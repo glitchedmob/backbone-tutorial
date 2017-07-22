@@ -13729,7 +13729,20 @@ app.singleFlower = Backbone.Model.extend({
 });
 var app = app || {};
 
-app.FlowerCollection = Backbone.Collection.extend({
+app.singleFlowerView = Backbone.View.extend({
+	tagName: 'article',
+	className: 'flowerListItem',
+
+	template: _.template( $('#flowerElement').html() ),
+
+	render: function() {
+		var flowerTemplate = this.template( this.model.toJSON() );
+		this.$el.html(flowerTemplate);
+		return this;
+	}
+});var app = app || {};
+
+app.FlowersCollection = Backbone.Collection.extend({
 	model: app.singleFlower
 });var redRoses = new app.singleFlower({
 	name: 'Red Roses',

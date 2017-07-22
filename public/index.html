@@ -12,6 +12,15 @@
 
 	<div id="copy"></div>
 
+	<script id="flowerElement" type="text/template">
+		<a href="#<%= link %>"><img src="<%= img %>" alt="<%= name %>" class="image"></a>
+		<ul>
+			<li class="flowerInfo">Name: <strong><%= name %></strong></li>
+			<li class="flowerInfo">Price: <strong><%= price %></strong></li>
+			<li class="flowerInfo">Color: <strong><%= color %></strong></li>
+		</ul>
+	</script>
+
 	<script src="js/app.js"></script>
 </body>
 </html>
