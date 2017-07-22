@@ -25,19 +25,17 @@ body {
 }
 
 .flowerListItem {
+  display: inline-block;
   margin: 0 10px;
   list-style-type: none;
-  width: 220px;
-  margin-bottom: 30px;
 }
 
 
 
-.stateFlowerStyle {
+.flowerInfo {
   list-style-type: none;
   text-align: left;
   margin-bottom: 5px;
-  width: 300px;
 }
 
 #copy {
@@ -49,17 +47,15 @@ body {
   width: 600px;
 }
 
-#stateFlowers {
+#allFlowers {
   padding: 20px;
   margin: 0 auto;
   text-align: center;
-  width: 362px;
+  width: 750px;
   background-color: #E0E0E0;
   border: 1px solid #CC6699;
 }
 
-.stateFlowerHeader {
-  color: red;
-  text-decoration: underline;
-  text-align: center;
+.bgColorImage {
+  background-color: #CEBDBD;
 }

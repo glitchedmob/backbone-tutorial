@@ -13724,7 +13724,10 @@ var app = app || {};
 
 app.singleFlower = Backbone.Model.extend({
 
-
+  defaults: {
+    color: "pink",
+    img: "images/placeholder.jpg"
+  }
 
 });// Namespace our flowerApp
 var app = app || {};
@@ -13734,12 +13737,25 @@ app.singleFlowerView = Backbone.View.extend({
   tagName: "article",
   className: "flowerListItem",
 
-  template: _.template( $("#stateFlowerElement").html() ),
+  template: _.template( $("#flowerElement").html() ),
 
   render: function() {
     var flowerTemplate = this.template(this.model.toJSON());
     this.$el.html(flowerTemplate);
     return this;
+  },
+
+  events: {
+    'mouseover': 'addBgColor',
+    'mouseout': 'removeBgColor'
+  },
+
+  addBgColor: function() {
+    this.$el.addClass('bgColorImage');
+  },
+
+  removeBgColor: function() {
+    this.$el.removeClass('bgColorImage');
   }
 
 });// Namespace our flowerApp
@@ -13764,22 +13780,42 @@ app.allFlowersView = Backbone.View.extend({
 app.FlowersCollection = Backbone.Collection.extend({
 	model: app.singleFlower
 });
-var wash = new app.singleFlower({
-  state: "Washington",
-  flower: "Rhododendron macrophyllum"
+var app = app || {};
+
+app.Router = Backbone.Router.extend({
+	routes: {
+		'': 'noCopy',
+		'heirloomRose': 'heirloomRoseMessage',
+		'rainbowRose': 'rainbowRoseMessage',
+		'redRose': 'redRoseMessage'
+	}
+});var redRoses = new app.singleFlower({
+  name: "Red Roses",
+  price: 39.95,
+  color: "Red",
+  img: "images/redRoses.jpg",
+  link: "redRose"
 });
 
-var ore = new app.singleFlower({
-  state: "Oregon",
-  flower: "Oregon Grape"
+var rainbowRoses = new app.singleFlower({
+  name: "Rainbow Roses",
+  price: 29.95,
+  color: "orange",
+  link: "rainbowRose"
 });
 
+var heirloomRoses = new app.singleFlower({
+  name: "Heirloom roses",
+  price: 19.95,
+  img: "images/heirloomPinkRoses.jpg",
+  link: "heirloomRose"
+});
 
 var flowerGroup = new app.FlowersCollection([
-  wash, ore
+  redRoses, rainbowRoses, heirloomRoses
 ]);
 
 var flowerGroupView = new app.allFlowersView({ collection: flowerGroup});
 
-$("#stateFlowers").html(flowerGroupView.render().el);
+$("#allFlowers").html(flowerGroupView.render().el);
 

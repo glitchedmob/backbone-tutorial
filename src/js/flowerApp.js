@@ -1,19 +1,30 @@
-var wash = new app.singleFlower({
-  state: "Washington",
-  flower: "Rhododendron macrophyllum"
+var redRoses = new app.singleFlower({
+  name: "Red Roses",
+  price: 39.95,
+  color: "Red",
+  img: "images/redRoses.jpg",
+  link: "redRose"
 });
 
-var ore = new app.singleFlower({
-  state: "Oregon",
-  flower: "Oregon Grape"
+var rainbowRoses = new app.singleFlower({
+  name: "Rainbow Roses",
+  price: 29.95,
+  color: "orange",
+  link: "rainbowRose"
 });
 
+var heirloomRoses = new app.singleFlower({
+  name: "Heirloom roses",
+  price: 19.95,
+  img: "images/heirloomPinkRoses.jpg",
+  link: "heirloomRose"
+});
 
 var flowerGroup = new app.FlowersCollection([
-  wash, ore
+  redRoses, rainbowRoses, heirloomRoses
 ]);
 
 var flowerGroupView = new app.allFlowersView({ collection: flowerGroup});
 
-$("#stateFlowers").html(flowerGroupView.render().el);
+$("#allFlowers").html(flowerGroupView.render().el);
 
