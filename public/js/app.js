@@ -13739,12 +13739,28 @@ app.singleFlowerView = Backbone.View.extend({
 		var flowerTemplate = this.template( this.model.toJSON() );
 		this.$el.html(flowerTemplate);
 		return this;
+	},
+
+	addFlower: function(flower) {
+		var flowerView = new app.singleFlowerView({ model: flower });
+		this.$el.append(flowerView.render().el);
+	}
+});
+var app = app || {};
+
+app.allFlowersView = Backbone.View.extend({
+	tagName: 'section',
+
+	render: function() {
+		this.collection.each(this.addFlower, this);
+		return this;
 	}
 });var app = app || {};
 
 app.FlowersCollection = Backbone.Collection.extend({
 	model: app.singleFlower
-});var redRoses = new app.singleFlower({
+});
+var redRoses = new app.singleFlower({
 	name: 'Red Roses',
 	price: 39.95,
 	color: 'red',
