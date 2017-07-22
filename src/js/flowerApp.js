@@ -20,4 +20,28 @@ var heirloomRoses = new app.singleFlower({
 	link: 'heirloomRose'
 });
 
-rainbowRoses.set('price', 20);
+var tantalizingTulips = new app.singleFlower({
+	name: 'Tantalizing Tulips',
+	price: 59.95,
+	color: 'purple',
+	link: 'tantalizingTulips'
+});
+
+var fleurDeLis = new app.singleFlower({
+	name: 'Fleur-de-lis',
+	price: 9.95,
+	color: 'blue',
+	link: 'fleurDeLis'
+});
+
+var flowerGroup = new app.FlowersCollection([
+	redRoses, rainbowRoses, heirloomRoses
+]);
+
+var EuropeanFlower = new app.FlowersCollection([
+	tantalizingTulips, fleurDeLis
+]);
+
+fleurDeLis.set('originCountry', 'Holland');
+
+console.log(flowerGroup.toJSON());

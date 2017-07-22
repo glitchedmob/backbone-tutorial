@@ -1,8 +1,8 @@
 var concat = require('concat-files');
 
 concat([
-    'node_modules/jquery/dist/jquery.js',
-    'node_modules/underscore/underscore.js',
+		'node_modules/jquery/dist/jquery.js',
+		'node_modules/underscore/underscore.js',
 		'node_modules/backbone/backbone.js',
 
 		'src/js/models/singleFlowerModel.js',

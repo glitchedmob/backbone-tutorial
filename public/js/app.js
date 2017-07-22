@@ -13725,31 +13725,19 @@ app.singleFlower = Backbone.Model.extend({
 	defaults: {
 		color: 'pink',
 		img: 'images/placeholder.jpg'
-	},
-
-	initialize: function() {
-		console.log(
-			'A model instance named '
-			+ this.get('name') +
-			' has been created and it costs '
-			+ this.get('price')
-		);
-
-		this.on('change', function() {
-			console.log('Something in our model has changed');
-		});
-
-		this.on('change:price', function() {
-			console.log(
-				'The price for the '
-				+ this.get('name') + 
-				' model just change to $'
-				+ this.get('price')
-			);
-		});
 	}
 });
-var redRoses = new app.singleFlower({
+var app = app || {};
+
+app.FlowersCollection = Backbone.Collection.extend({
+	model: app.singleFlower,
+	initialize: function() {
+		this.on('change', function() {
+			console.log('Collection has updated');
+			console.log(this.toJSON());
+		})
+	}
+});var redRoses = new app.singleFlower({
 	name: 'Red Roses',
 	price: 39.95,
 	color: 'red',
@@ -13771,4 +13759,28 @@ var heirloomRoses = new app.singleFlower({
 	link: 'heirloomRose'
 });
 
-rainbowRoses.set('price', 20);
+var tantalizingTulips = new app.singleFlower({
+	name: 'Tantalizing Tulips',
+	price: 59.95,
+	color: 'purple',
+	link: 'tantalizingTulips'
+});
+
+var fleurDeLis = new app.singleFlower({
+	name: 'Fleur-de-lis',
+	price: 9.95,
+	color: 'blue',
+	link: 'fleurDeLis'
+});
+
+var flowerGroup = new app.FlowersCollection([
+	redRoses, rainbowRoses, heirloomRoses
+]);
+
+var EuropeanFlower = new app.FlowersCollection([
+	tantalizingTulips, fleurDeLis
+]);
+
+fleurDeLis.set('originCountry', 'Holland');
+
+console.log(flowerGroup.toJSON());
