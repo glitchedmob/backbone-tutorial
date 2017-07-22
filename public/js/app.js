@@ -13788,8 +13788,25 @@ app.Router = Backbone.Router.extend({
 		'heirloomRose': 'heirloomRoseMessage',
 		'rainbowRose': 'rainbowRoseMessage',
 		'redRose': 'redRoseMessage'
+	},
+
+	noCopy: function() {
+		$('#copy').html('');
+	},
+
+	heirloomRoseMessage: function() {
+		$('#copy').html('Heirloom Roses are great Mother\'s Day flowers');
+	},
+
+	rainbowRoseMessage: function() {
+		$('#copy').html('Choose Rainbow Roses for your wedding');
+	},
+
+	redRoseMessage: function() {
+		$('#copy').html('ON Valentine\'s Day, give thta special someone Red Roses');
 	}
-});var redRoses = new app.singleFlower({
+});
+var redRoses = new app.singleFlower({
   name: "Red Roses",
   price: 39.95,
   color: "Red",
@@ -13819,3 +13836,6 @@ var flowerGroupView = new app.allFlowersView({ collection: flowerGroup});
 
 $("#allFlowers").html(flowerGroupView.render().el);
 
+var flowerRouter = new app.Router();
+
+Backbone.history.start();
