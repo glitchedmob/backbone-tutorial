@@ -1,5 +1,5 @@
 var app = app || {};
 
-app.EuropeanFlower = Backbone.Collection.extend({
-	model: app.Flower
+app.FlowerCollection = Backbone.Collection.extend({
+	model: app.singleFlower
 });
