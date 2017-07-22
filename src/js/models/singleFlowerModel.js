@@ -1,8 +1,9 @@
 var app = app || {};
 
-app.singleFlower = Backbone.Model.extend({
-	defaults: {
-		color: 'pink',
-		img: 'images/placeholder.jpg'
+app.Flower = Backbone.Model.extend({
+	initialize: function() {
+		this.on('change', function() {
+			console.log('The' + this.get('name') + ' model instance just changed!');
+		})
 	}
 });

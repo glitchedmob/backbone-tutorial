@@ -13721,63 +13721,32 @@ return jQuery;
 });
 var app = app || {};
 
-app.singleFlower = Backbone.Model.extend({
-	defaults: {
-		color: 'pink',
-		img: 'images/placeholder.jpg'
+app.Flower = Backbone.Model.extend({
+	initialize: function() {
+		this.on('change', function() {
+			console.log('The' + this.get('name') + ' model instance just changed!');
+		})
 	}
 });
 var app = app || {};
 
-app.FlowersCollection = Backbone.Collection.extend({
-	model: app.singleFlower,
-	initialize: function() {
-		this.on('change', function() {
-			console.log('Collection has updated');
-			console.log(this.toJSON());
-		})
-	}
-});var redRoses = new app.singleFlower({
-	name: 'Red Roses',
-	price: 39.95,
-	color: 'red',
-	img: 'images/redRoses.jpg',
-	link: 'redRose'
-});
-
-var rainbowRoses = new app.singleFlower({
-	name: 'Rainbow Roses',
-	price: 29.95,
-	color: 'orange',
-	link: 'rainbowRose'
-});
-
-var heirloomRoses = new app.singleFlower({
-	name: 'Heirloom Roses',
-	price: 19.95,
-	img: 'images/heirloomRoses.jpg',
-	link: 'heirloomRose'
-});
-
-var tantalizingTulips = new app.singleFlower({
+app.EuropeanFlower = Backbone.Collection.extend({
+	model: app.Flower
+});var tantalizingTulips = new app.Flower({
 	name: 'Tantalizing Tulips',
 	price: 59.95,
-	color: 'purple',
-	link: 'tantalizingTulips'
+	color: 'purple'
 });
 
-var fleurDeLis = new app.singleFlower({
+var fleurDeLis = new app.Flower({
 	name: 'Fleur-de-lis',
 	price: 9.95,
-	color: 'blue',
-	link: 'fleurDeLis'
+	color: 'blue'
 });
 
-var flowerGroup = new app.FlowersCollection([
-	redRoses, rainbowRoses, heirloomRoses
-]);
 
-var EuropeanFlower = new app.FlowersCollection([
+
+var flowerGroup = new app.EuropeanFlower([
 	tantalizingTulips, fleurDeLis
 ]);
 
