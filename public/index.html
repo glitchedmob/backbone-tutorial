@@ -8,16 +8,24 @@
 </head>
 <body>
 
-	<div id="allFlowers"></div>
+	<div class="site">
 
-	<div id="copy"></div>
+    <div class="logo">  
+      <img src="images/site/logo.png" width="207" height="124" alt="Hansel and Petal" />
+    </div>
 
-	<script id="flowerElement" type="text/template">
-		<a href="#<%= link %>"><img src="<%= img %>" alt="<%= name %>" class="image"></a>
+    <h2 class="stateFlowerHeader">Pacific Northwest State Flowers</h2> 
+    
+    <div id="stateFlowers">
+      
+    </div>
+
+  </div> 
+
+	<script id="stateFlowerElement" type="text/template">
 		<ul>
-			<li class="flowerInfo">Name: <strong><%= name %></strong></li>
-			<li class="flowerInfo">Price: <strong><%= price %></strong></li>
-			<li class="flowerInfo">Color: <strong><%= color %></strong></li>
+			<li class="stateFlowerStyle"><strong>State: </strong><%= state %></li>
+			<li class="stateFlowerStyle"><strong>Flower: </strong><%= flower %></li>
 		</ul>
 	</script>
 

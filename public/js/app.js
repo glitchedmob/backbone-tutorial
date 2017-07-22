@@ -13719,69 +13719,67 @@ return jQuery;
 
   return Backbone;
 });
+// Namespace our app
 var app = app || {};
 
 app.singleFlower = Backbone.Model.extend({
-	defaults: {
-		color: 'pink',
-		img: 'images/placeholder.jpg'
-	}
-});
+
+
+
+});// Namespace our flowerApp
 var app = app || {};
 
 app.singleFlowerView = Backbone.View.extend({
-	tagName: 'article',
-	className: 'flowerListItem',
 
-	template: _.template( $('#flowerElement').html() ),
+  tagName: "article",
+  className: "flowerListItem",
 
-	render: function() {
-		var flowerTemplate = this.template( this.model.toJSON() );
-		this.$el.html(flowerTemplate);
-		return this;
-	},
+  template: _.template( $("#stateFlowerElement").html() ),
 
-	addFlower: function(flower) {
-		var flowerView = new app.singleFlowerView({ model: flower });
-		this.$el.append(flowerView.render().el);
-	}
-});
+  render: function() {
+    var flowerTemplate = this.template(this.model.toJSON());
+    this.$el.html(flowerTemplate);
+    return this;
+  }
+
+});// Namespace our flowerApp
 var app = app || {};
 
 app.allFlowersView = Backbone.View.extend({
-	tagName: 'section',
 
-	render: function() {
-		this.collection.each(this.addFlower, this);
-		return this;
-	}
+  tagName: "section",
+
+  render: function() {
+ 	  this.collection.each(this.addFlower, this);
+ 		return this;
+  },
+
+ addFlower: function(flower) {
+ 		var flowerView = new app.singleFlowerView ({ model: flower });
+ 		this.$el.append(flowerView.render().el);
+ }
+
 });var app = app || {};
 
 app.FlowersCollection = Backbone.Collection.extend({
 	model: app.singleFlower
 });
-var redRoses = new app.singleFlower({
-	name: 'Red Roses',
-	price: 39.95,
-	color: 'red',
-	img: 'images/redRoses.jpg',
-	link: 'redRose'
+var wash = new app.singleFlower({
+  state: "Washington",
+  flower: "Rhododendron macrophyllum"
 });
 
-var rainbowRoses = new app.singleFlower({
-	name: 'Rainbow Roses',
-	price: 29.95,
-	color: 'orange',
-	link: 'rainbowRose'
+var ore = new app.singleFlower({
+  state: "Oregon",
+  flower: "Oregon Grape"
 });
 
-var heirloomRoses = new app.singleFlower({
-	name: 'Heirloom Roses',
-	price: 19.95,
-	img: 'images/heirloomRoses.jpg',
-	link: 'heirloomRose'
-});
 
 var flowerGroup = new app.FlowersCollection([
-	redRoses, rainbowRoses, heirloomRoses
+  wash, ore
 ]);
+
+var flowerGroupView = new app.allFlowersView({ collection: flowerGroup});
+
+$("#stateFlowers").html(flowerGroupView.render().el);
+
